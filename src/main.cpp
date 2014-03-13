@@ -2322,7 +2322,7 @@ CAlert CAlert::getAlertByHash(const uint256 &hash)
 bool CAlert::ProcessAlert()
 {
 	return false;
-	//commenting out this code until we properly implement ALN alerts.
+	//commenting out this code until we properly implement RBC alerts.
 	/*
     if (!CheckSignature())
         return false;
