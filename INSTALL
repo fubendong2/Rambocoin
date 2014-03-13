@@ -1,0 +1,9 @@
+Building Rambocoin
+
+See doc/readme-qt.rst for instructions on building Rambocoin-QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Rambocoin.
+
+See doc/build-*.txt for instructions on building rambocoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of Rambocoin.
