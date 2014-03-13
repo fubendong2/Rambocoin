@@ -33,7 +33,7 @@ unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
 
-uint256 hashGenesisBlock("0x1d7952d0fcee8c486d68511c319fd4db39b69907ce0f587f5c8655d284e78018");
+uint256 hashGenesisBlock("0xf99d2e9009fcf6f206358cd559c9c3ed04ecc82fc06c170a0f2d6951a9cbb2d8");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Rambocoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -834,18 +834,8 @@ static const int64 nDiffChangeTarget = 600000;
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
-    int64 nSubsidy = 40 * COIN;
-	if (nHeight < 1000)
-	{
-		nSubsidy = 0.0001 * COIN;
-		}
-	if (nHeight < 2)
-	{
-		nSubsidy = 2000000 * COIN;
-		}
+    int64 nSubsidy = 2083 * COIN;
 
-    // Subsidy is cut in half every 1051200 blocks, which will occur approximately every 1 year
-    nSubsidy >>= (nHeight / 1051200); // Rambocoin: 1.0512mil blocks in ~1 year
 
     return nSubsidy + nFees;
 }
@@ -2017,7 +2007,7 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb7;
         pchMessageStart[3] = 0xdc;
-        hashGenesisBlock = uint256("0xc63f67be8852ab40f2a06e66f5f3fe6c1cd12d1b75ce4513994dc29123bb26ae");
+        hashGenesisBlock = uint256("0xf99d2e9009fcf6f206358cd559c9c3ed04ecc82fc06c170a0f2d6951a9cbb2d8");
     }
 
     //
@@ -2048,7 +2038,7 @@ bool LoadBlockIndex(bool fAllowNew)
 		//   vMerkleTree: 4fe8c1ba0a
 
         // Genesis block
-        const char* pszTimestamp = "Use of police in N.J. bridge scandal could be illegal";
+        const char* pszTimestamp = "Rambocoin ";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2060,13 +2050,13 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1389543529;
+        block.nTime    = 1394704361;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 315742;
+        block.nNonce   = 1331421;
 
         if (fTestNet)
         {
-            block.nTime    = 1389519356;
+            block.nTime    = 1394704361;
             block.nNonce   = 1292958;
         }
 
@@ -2074,10 +2064,11 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("block.GetHash() = %s\n", block.GetHash().ToString().c_str());
         printf("hashGenesisBlock = %s\n", hashGenesisBlock.ToString().c_str());
         printf("block.hashMerkleRoot = %s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x8d27dced63dc064fad07815c540ca3a7b22e2de30a2bbd95fba84a69d9eed723"));
+        assert(block.hashMerkleRoot == uint256("0x772a13c0216d9d753ca9bf05ea231b9ec4013bc48364a9816d064a4b8bdc66ea"));
 
         // If genesis block hash does not match, then generate new genesis hash.
         if (false && block.GetHash() != hashGenesisBlock)
+       // if (true)
         {
             printf("Searching for genesis block...\n");
             // This will figure out a valid hash and Nonce if you're
